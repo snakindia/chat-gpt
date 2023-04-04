@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-    organization: process.env.NEXT_PUBLIC_OPENAI_ORGANISATION_KEY,
+    organization: process.env.NEXT_PUBLIC_OPENAI_ORGANISATION_KEYgit ,
     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
 })
 
