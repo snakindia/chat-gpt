@@ -94,3 +94,71 @@
     from, to { border-color: transparent }
     50% { border-color: orange; }
   }
+
+  .voice-search {
+      top: 10px;
+      right: 10px;
+      background: white;
+      position: fixed;
+  }    
+
+.voice-modal {
+  position: 'absolute' as 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  width: 400;
+  border: '2px solid #000';
+}
+
+.modal-content {
+  width: 48%;
+  border-radius: 5px;
+
+}
+.modal-hdg{
+  font-size: 20px;
+  line-height: 28px; 
+  font-weight: 700;
+  color:#183d31;
+  margin-bottom: 30px;
+}
+
+.modal-content form  {
+  border: solid 1px #cccc;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.divider{
+  margin: 20px  0px;
+  text-align: center;
+  position: relative;
+}
+
+.divider::after {
+  content: "";
+  display: block;
+  width: 48%;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 13px;
+}
+.divider::before {
+  content: "";
+  display: block;
+  width: 46%;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+
+.recording button{
+  background:#68de7a;
+  padding: 20px;
+  display: block;
+  width: 100%;
+}
