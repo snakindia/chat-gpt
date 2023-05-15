@@ -1,4 +1,5 @@
 import { DocumentData } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 type Props = {
@@ -7,6 +8,32 @@ type Props = {
 
 function Message({message} : Props) {
     const isChatGPT = message.user.name === "ChatGPT";
+    const [typedText, setTypedText] = useState("");
+
+    useEffect(() => {
+      if(message.user.isImageGenerator) return
+
+      if(message.user.name !== 'ChatGPT') {
+        setTypedText(message.text)
+        return
+      }
+
+      let currentIndex = 0;
+      const text = message.text;
+  
+      const typingInterval = setInterval(() => {
+        if (currentIndex < text.length - 1) {
+          setTypedText(prevTypedText => prevTypedText + text[currentIndex]);
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 100); // Adjust the typing speed by changing the interval duration
+  
+      return () => {
+        clearInterval(typingInterval);
+      };
+    }, [message.text]);
 
     const downloadImage = (url: string) => {
        fetch(url, { mode: 'no-cors'})
@@ -31,6 +58,8 @@ function Message({message} : Props) {
        })
     }
 
+
+
   return (
     <div className={`py-5 text-white ${isChatGPT && "bg-[#434654]"}`}>
         <div className="flex space-x-5 px-10 max-w-2xl max-auto ">
@@ -44,7 +73,7 @@ function Message({message} : Props) {
             </p>}
             {!message.user.isImageGenerator && 
                 <p className="pt-1 text-sm">
-                {message.text}
+                {typedText}
             </p>
             }
         </div>

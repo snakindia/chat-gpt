@@ -16,14 +16,21 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  const models = await openai.listModels().then((res) => res.data.data);
+  //const models = await openai.listModels().then((res) => res.data.data);
 
-  const modelOptions= models.map((model) => ({
-    value: model.id,
-    label: model.id,
-  }));
+  // const modelOptions= models.map((model) => ({
+  //   value: model.id,
+  //   label: model.id,
+  // }));
 
-  modelOptions.unshift({label:'ImageGenerator', value:'ImageGenerator'})
+  const modelOptions = [
+                          {value: 'text-davinci-003', label: 'text-davinci-003'},
+                          {label:'ImageGenerator', value:'ImageGenerator'}
+                        
+                        ]
+  
+
+  //modelOptions.unshift({label:'ImageGenerator', value:'ImageGenerator'})
   
   
   res.status(200).json({modelOptions,});
